@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Student Registration</h1>
+            <p>Please fill in your details to register</p>
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                <div class="error-message" id="nameError">Please enter a valid name (letters and spaces only)</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dob">Date of Birth <span class="required">*</span></label>
+                    <input type="date" id="dob" name="dob">
+                    <div class="error-message" id="dobError">Please enter a valid date of birth</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="class">Class <span class="required">*</span></label>
+                    <select id="class" name="class">
+                        <option value="">Select Class</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
+                        <option value="4">Class 4</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                    <div class="error-message" id="classError">Please select your class</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address">
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmEmail">Confirm Email <span class="required">*</span></label>
+                <input type="email" id="confirmEmail" name="confirmEmail" placeholder="Confirm your email address">
+                <div class="error-message" id="confirmEmailError">Email addresses do not match</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number (e.g., +1-234-567-8900)">
+                <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Register Student</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            ✅ Registration successful! Welcome to our school.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            // Validation functions
+            function showError(inputId, errorId, message) {
+                const input = document.getElementById(inputId);
+                const error = document.getElementById(errorId);
+                input.classList.add('error');
+                error.textContent = message;
+                error.style.display = 'block';
+                return false;
+            }
+
+            function hideError(inputId, errorId) {
+                const input = document.getElementById(inputId);
+                const error = document.getElementById(errorId);
+                input.classList.remove('error');
+                error.style.display = 'none';
+                return true;
+            }
+
+            function validateName() {
+                const name = document.getElementById('fullName').value.trim();
+                const nameRegex = /^[a-zA-Z\s]+$/;
+
+                if (name === '') {
+                    return showError('fullName', 'nameError', 'Full name is required');
+                }
+                if (name.length < 2) {
+                    return showError('fullName', 'nameError', 'Name must be at least 2 characters long');
+                }
+                if (!nameRegex.test(name)) {
+                    return showError('fullName', 'nameError', 'Name can only contain letters and spaces');
+                }
+                return hideError('fullName', 'nameError');
+            }
+
+            function validateDOB() {
+                const dob = document.getElementById('dob').value;
+                const today = new Date();
+                const birthDate = new Date(dob);
+
+                if (dob === '') {
+                    return showError('dob', 'dobError', 'Date of birth is required');
+                }
+
+                if (birthDate > today) {
+                    return showError('dob', 'dobError', 'Date of birth cannot be in the future');
+                }
+
+                const age = today.getFullYear() - birthDate.getFullYear();
+                if (age < 5 || age > 25) {
+                    return showError('dob', 'dobError', 'Age must be between 5 and 25 years');
+                }
+
+                return hideError('dob', 'dobError');
+            }
+
+            function validateClass() {
+                const classValue = document.getElementById('class').value;
+                if (classValue === '') {
+                    return showError('class', 'classError', 'Please select your class');
+                }
+                return hideError('class', 'classError');
+            }
+
+            function validateEmail() {
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (email === '') {
+                    return showError('email', 'emailError', 'Email address is required');
+                }
+                if (!emailRegex.test(email)) {
+                    return showError('email', 'emailError', 'Please enter a valid email address');
+                }
+                return hideError('email', 'emailError');
+            }
+
+            function validateConfirmEmail() {
+                const email = document.getElementById('email').value.trim();
+                const confirmEmail = document.getElementById('confirmEmail').value.trim();
+
+                if (confirmEmail === '') {
+                    return showError('confirmEmail', 'confirmEmailError', 'Please confirm your email address');
+                }
+                if (email !== confirmEmail) {
+                    return showError('confirmEmail', 'confirmEmailError', 'Email addresses do not match');
+                }
+                return hideError('confirmEmail', 'confirmEmailError');
+            }
+
+            function validatePhone() {
+                const phone = document.getElementById('phone').value.trim();
+                const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+
+                if (phone === '') {
+                    return showError('phone', 'phoneError', 'Phone number is required');
+                }
+                if (phone.length < 10 || phone.length > 15) {
+                    return showError('phone', 'phoneError', 'Phone number must be between 10 and 15 digits');
+                }
+                if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                    return showError('phone', 'phoneError', 'Please enter a valid phone number');
+                }
+                return hideError('phone', 'phoneError');
+            }
+
+            // Real-time validation
+            document.getElementById('fullName').addEventListener('blur', validateName);
+            document.getElementById('dob').addEventListener('blur', validateDOB);
+            document.getElementById('class').addEventListener('blur', validateClass);
+            document.getElementById('email').addEventListener('blur', validateEmail);
+            document.getElementById('confirmEmail').addEventListener('blur', validateConfirmEmail);
+            document.getElementById('phone').addEventListener('blur', validatePhone);
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const isNameValid = validateName();
+                const isDOBValid = validateDOB();
+                const isClassValid = validateClass();
+                const isEmailValid = validateEmail();
+                const isConfirmEmailValid = validateConfirmEmail();
+                const isPhoneValid = validatePhone();
+
+                if (isNameValid && isDOBValid && isClassValid && isEmailValid && isConfirmEmailValid && isPhoneValid) {
+                    // Collect form data
+                    const formData = {
+                        fullName: document.getElementById('fullName').value.trim(),
+                        dob: document.getElementById('dob').value,
+                        class: document.getElementById('class').value,
+                        email: document.getElementById('email').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        registrationDate: new Date().toISOString()
+                    };
+
+                    console.log('Registration Data:', formData);
+
+                    // Save to localStorage
+                    const existingStudents = JSON.parse(localStorage.getItem('students') || '[]');
+                    existingStudents.push(formData);
+                    localStorage.setItem('students', JSON.stringify(existingStudents));
+
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    form.style.display = 'none';
+
+                    // Reset form after 3 seconds
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        successMessage.style.display = 'none';
+
+                        // Clear all errors
+                        document.querySelectorAll('.error-message').forEach(error => {
+                            error.style.display = 'none';
+                        });
+                        document.querySelectorAll('.error').forEach(input => {
+                            input.classList.remove('error');
+                        });
+                    }, 3000);
+                }
+            });
+
+            // Format phone number as user types
+            document.getElementById('phone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 10) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+                }
+                e.target.value = value;
+            });
+        });
+    </script>
+</body>
+</html>
